@@ -1,77 +1,165 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>Tip Calculator Project</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script src="data.js"></script>
+<html>
 
-<!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-
-   
+<head>
+	<style>
+		body {
+			background-color: #001f4f;
+			font-family: 'Raleway', sans-serif;
+		}
+		
+		.container {
+			width: 350px;
+			height: 500px;
+			background-color: #fff;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translateX(-50%) translateY(-50%);
+			border-radius: 20px;
+		}
+		
+		h1 {
+			position: absolute;
+			left: 50%;
+			top: -60px;
+			width: 300px;
+			transform: translateX(-50%);
+			background-color: #FF851B;
+			color: #fff;
+			font-weight: 100;
+			border-top-left-radius: 20px;
+			border-top-right-radius: 20px;
+			font-size: 18px;
+			text-align: center;
+			padding: 10px;
+		}
+		
+		.wrapper {
+			padding: 20px;
+		}
+		
+		input,
+		select {
+			width: 80%;
+			border: none;
+			border-bottom: 1px solid #0074D9;
+			padding: 10px;
+		}
+		
+		input:focus,
+		select:focus {
+			border: 1px solid #0074D9;
+			outline: none;
+		}
+		
+		select {
+			width: 88% !important;
+		}
+		
+		button {
+			margin: 20px auto;
+			width: 150px;
+			height: 50px;
+			background-color: #FF851B;
+			color: #fff;
+			font-size: 16px;
+			border: none;
+			border-radius: 5px;
+		}
+		
+		.tip {
+			text-align: center;
+			font-size: 18px;
+			display: none;
+		}
+	</style>
 </head>
-<body class="bg-dark">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 mx-auto">
-        <div class="card card-body text-center mt-5">
-          <h1 class="heading display-5 pb-3">Tip Calculator</h1>
-          <form id="tip-form">
-            <div class="form-group">
-              <div class="input-group">
-                <span class="input-group-addon">$</span>
-                <input type="number" class="form-control" id="billTotal" placeholder="Total Bill">
-              </div>
-            </div>
-            <div class="form-group tipPersent">
-              <div class="input-group">
-                <label for="">Tip:</label>
 
+<body>
+	<div class="container">
+		<h1>TIP CALCULATOR</h1>
+		<div class="wrapper">
+			
+<p>Bill Amount</p>
 
-                <input type="range" class="form-control" id="tipInput" value="0">
-                <span class="input-group-addon" id="tipOutput"></span>
-              </div>
-            </div>
+			<input type="text"
+				id="amount"
+				placeholder="Amount to be paid"> $
 
+			
+<p>How much tip ?</p>
 
+			<select id="services">
+				<option selected disabled hidden>Select</option>
+				<option value="0.25">25%</option>
+				<option value="0.20">20%</option>
+				<option value="0.15">15%</option>
+				<option value="0.10">10%</option>
+				<option value="0.05">5%</option>
+			</select>
 
-          </form>
-          <hr>
+			
+<p>Total number of persons</p>
 
-          <!-- RESULTS -->
-          <div id="results" class="pt-4">
-            <h5>Results</h5>
-            <div class="form-group">
-              <div class="input-group">
-                <span class="input-group-addon">Tip amount</span>
-                <input type="number" class="form-control" id="tipAmount" disabled>
-              </div>
-            </div>
+			<input type="text"
+				id="persons"
+				placeholder="Number of people sharing the bill">
+			<button id="calculate">Calculate</button>
+		</div>
 
-            <div class="form-group">
-              <div class="input-group">
-                <span class="input-group-addon">Total Bill with Tip</span>
-                <input type="number" class="form-control" id="totalBillWithTip" disabled>
-              </div>
-            </div>
+		<div class="tip">
+			
+<p>Tip Amount</p>
 
+			<span id="total">0</span>$
+			<span id="each">each</span>
+		</div>
+	</div>
+	<script>
+		//the function called when Calculate button is clicked.
+		window.onload = () =>
+			{
+				/*calling a function calculateTip which
+				will calculate the tip for the bill.*/
+				document.querySelector('#calculate').onclick =
+				calculateTip;
+			}
 
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+		function calculateTip() {
+			/*assing values of ID : amount, person and
+			service to variables for further calculations.*/
+			let amount = document.querySelector('#amount').value;
+			let persons = document.querySelector('#persons').value;
+			let service = document.querySelector('#services').value;
 
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+			console.log(service);
+			/*if statement will work when user
+			presses calculate without entering values. */
+			//so will display an alert box and return.
+			if (amount === '' && service === 'Select') {
+				alert("Please enter valid values");
+				return;
+			}
 
+			//now we are checking number of persons
+			if (persons === '1')
+//if there is only one person then we need not to display each.
+				document.querySelector('#each').style.display = 'none';
+			else
+			//if there are more than one person we will display each.
+				document.querySelector('#each').style.display = 'block';
+
+	/*calculating the tip by multiplying total-bill and type of service;
+	then dividing it by number of persons.*/
+			//fixing the total amount upto 2 digits of decimal
+			let total = (amount * service) / persons;
+			total = total.toFixed(2);
+
+			//finally displaying the tip value
+			document.querySelector('.tip').style.display = 'block';
+			document.querySelector('#total').innerHTML = total;
+		}
+	</script>
 </body>
-
 
 </html>
