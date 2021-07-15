@@ -1,0 +1,27 @@
+{
+	"folders": [
+		{
+			"name": "JavaScript",
+			"path": "..\\..\\TTS Java Course\\JavaScript"
+		},
+		{
+			"name": "Bootstrap",
+			"path": "..\\..\\TTS Java Course\\Bootstrap"
+		},
+		{
+			"name": "Homework",
+			"path": "..\\..\\TTS Java Course\\Homework"
+		},
+		{
+			"name": "Masthead-Homework",
+			"path": "..\\..\\TTS Java Course\\Masthead-Homework"
+		},
+		{
+			"name": "Contact",
+			"path": "..\\..\\TTS Java Course\\Java Projects\\Team3-Tinyhorse-2021\\Contact"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "JavaScript"
+	}
+}
